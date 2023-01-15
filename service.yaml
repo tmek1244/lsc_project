@@ -1,11 +1,31 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: app
+  name: backend
   namespace: default
 spec:
   template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/min-scale: "1"
     spec:
       containers:
-        - image: dev.local/app:latest
+        - image: dev.local/backend:latest
+          imagePullPolicy: Never
+
+---
+
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: default
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/min-scale: "1"
+    spec:
+      containers:
+        - image: dev.local/frontend:latest
           imagePullPolicy: Never

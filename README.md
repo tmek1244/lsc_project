@@ -17,7 +17,8 @@ And enter your password
 
 ## Build image on minikube
 ```
-minikube image build -t dev.local/app:latest app
+minikube image build -t dev.local/frontend:latest frontend
+minikube image build -t dev.local/backend:latest backend
 ```
 
 ## Apply service
@@ -27,10 +28,12 @@ kubectl apply -f service.yaml
 
 ## Logs about service (just in case)
 ```
-kubectl describe ksvc/app
+kubectl describe ksvc/backend
+kubectl describe ksvc/frontend
 ```
 
 ## Get URL of service
 ```
-kubectl get ksvc app -o jsonpath='{.status.url}'
+kubectl get ksvc frontend -o jsonpath='{.status.url}'
+kubectl get ksvc backend -o jsonpath='{.status.url}'
 ```
