@@ -17,7 +17,7 @@ def index():
         # get url that the person has entered
         data = request.form['data']
         r = requests.post(
-            f"http://backend.default.10.105.62.247.sslip.io/request",
+            f"http://backend.default.svc.cluster.local/request",
             json={
                 'data': data
             }
@@ -30,3 +30,4 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
+    svc.cluster.local
