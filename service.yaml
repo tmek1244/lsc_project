@@ -8,6 +8,9 @@ spec:
     metadata:
       annotations:
         autoscaling.knative.dev/min-scale: "1"
+        # autoscaling.knative.dev/max-scale: "3"
+        # autoscaling.knative.dev/initial-scale: "0"
+        # autoscaling.knative.dev/activation-scale: "5"
     spec:
       containers:
         - image: dev.local/backend:latest
@@ -29,3 +32,12 @@ spec:
       containers:
         - image: dev.local/frontend:latest
           imagePullPolicy: Never
+      env:
+        - name: TARGET
+          value: "Knative"
+  # traffic:
+  # - latestRevision: true
+  #   percent: 50
+  # - latestRevision: false
+  #   percent: 50
+  #   revisionName: frontend-00001
